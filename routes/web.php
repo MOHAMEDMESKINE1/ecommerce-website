@@ -4,11 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Store\CartController;
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Auth\GithubController;
-use App\Http\Controllers\Auth\GoogleController;
-use App\Http\Controllers\Store\StoreController;
 use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Auth\FacebookController;
 use App\Http\Controllers\Editor\EditorController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\Stripe\StripeController;
@@ -25,25 +21,8 @@ use App\Http\Controllers\Admin\Stripe\StripeController;
 */
 
 
-Route::get('/shop',[StoreController::class,'index'])->name('index');
-Route::get('/',[StoreController::class,'home'])->name('home');
-Route::get('/contact',[StoreController::class,'contact'])->name('contact');
 
 
-Route::post('/session', [StripeController::class,'session'])->name('session');
-Route::get('/success', [StripeController::class,'success'])->name('success');
-
-Route::controller(CartController::class)
-->group(function(){
-
-    Route::get('cart','cart')->name('cart');
-    Route::get('add-to-cart/{id}','addToCart');
-    Route::patch('update-cart','updateCart');
-    Route::delete('remove-from-cart','removeCart');
-    Route::get('/clear-cart','clearCart')->name('cart.clear');
-
-    
-});
 
 Route::middleware(['auth','admin'])->group(function () {
 
@@ -95,21 +74,9 @@ Route::middleware(['auth','editor'])->group(function () {
 });
 
 
-Route::controller(GithubController::class)->group(function(){
-    Route::get('auth/github', 'redirectToGithub')->name('auth.github');
-    Route::get('auth/github/callback', 'handleGithubCallback');
-});
 
-
-Route::controller(GoogleController::class)->group(function(){
-
-    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
-    Route::get('auth/google/callback', 'handleGoogleCallback');
-});
-
-Route::controller(FacebookController::class)->group(function(){
-    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
-    Route::get('auth/facebook/callback', 'handleFacebookCallback');
-});
+include __DIR__.'/store.php';
+include __DIR__.'/stripe.php';
+include __DIR__.'/auth.php';
 
 Auth::routes();
