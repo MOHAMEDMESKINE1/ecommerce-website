@@ -76,7 +76,7 @@
                   @elseif(Auth::user()->isEditor())
                       <a class="nav-link" href="{{ route('editor.dashboard') }}">{{ __('Dashboard') }}</a>
                   @else
-                  <a class="nav-link" href="{{ route('index') }}">{{ __('Home') }}</a>
+                   
 
                   @endif
                  @endauth

@@ -117,9 +117,20 @@
                   <p class="text-sm text-muted mb-0">Nisi nisi tempor consequat laboris nisi.</p>
                 </div>
                 <div class="col-lg-6">
-                  <form action="#">
+                  <form action="{{route('subscribers.store')}}" method="POST">
+                     @csrf
                     <div class="input-group">
-                      <input class="form-control form-control-lg" type="email" placeholder="Enter your email address" aria-describedby="button-addon2">
+                      <input type="text" name="email" 
+                      class="form-control w-75 @error('email') is-invalid @enderror"
+                      value="{{ old('email') }}"
+                      >
+                     @error('email')
+                     <span class="invalid-feedback" role="alert">
+                         <strong>{{ $message }}</strong>
+                     </span>
+ 
+                     @enderror
+                      
                       <button class="btn btn-dark" id="button-addon2" type="submit">Subscribe</button>
                     </div>
                   </form>

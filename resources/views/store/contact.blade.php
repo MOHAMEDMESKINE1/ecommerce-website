@@ -42,26 +42,67 @@
                 </div>
                 <div class="col-md-6 mt-5 mt-lg-0">
                     
-                    <form action="" method="post">
+                    <form action="{{route('contacts.store')}}" method="post">
+                        @csrf
                         <div class="d-flex justify-contact-start">
                         <h1>CONTACT US</h1>
     
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Name</label>
-                            <input type="text" name="name" id="" class="form-control w-100">
+                            <input type="text" name="name" 
+                             class="form-control w-100 @error('name') is-invalid @enderror"
+                             value="{{ old('name') }}"
+                             >
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+        
+                            @enderror
                           </div>
                           <div class="mb-3">
                             <label for="" class="form-label">Email</label>
-                            <input type="text" name="email" id="" class="form-control w-100">
+                            <input type="text" name="email" 
+                             class="form-control w-100 @error('email') is-invalid @enderror"
+                             value="{{ old('email') }}"
+                             >
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+        
+                            @enderror
                           </div>
                           <div class="mb-3">
                             <label for="" class="form-label">City</label>
-                            <input type="text" name="city" id="" class="form-control w-100">
+                            <input type="text" name="city" 
+                             class="form-control w-100 @error('city') is-invalid @enderror"
+                             value="{{ old('city') }}"
+                             >
+                            @error('city')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+        
+                            @enderror
+                          </div>
+                          <div class="mb-3">
+                            <label for="" class="form-label">Phone</label>
+                            <input type="text" name="phone" 
+                             class="form-control w-100 @error('phone') is-invalid @enderror"
+                             value="{{ old('phone') }}"
+                             >
+                            @error('phone')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+        
+                            @enderror
                           </div>
                           <div class="mb-3">
                           
-                            <input type="submit" name="" id="" class="btn btn-primary text-white w-100" value="Contact Us" >
+                            <input type="submit"  class="btn btn-primary text-white w-100" value="Contact Us" >
                             
                           </div>
                           

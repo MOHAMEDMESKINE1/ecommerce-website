@@ -2,13 +2,15 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TwilioController;
 use App\Http\Controllers\Store\CartController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Editor\EditorController;
+use App\Http\Controllers\Store\ContactController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Store\SubscriberController;
 use App\Http\Controllers\Admin\Stripe\StripeController;
-use App\Http\Controllers\TwilioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +67,31 @@ Route::middleware(['auth','admin'])->group(function () {
         Route::get('/create',  'create')->name('create');
 
     });
+
+    Route::controller(ContactController::class)
+    ->prefix("contacts")
+    ->name("contacts.")
+    ->group(function(){
+
+        Route::get('','index')->name('index');
+        Route::get('/search','search')->name('search');
+        Route::post('/store','store')->name('store');
+        Route::delete('/{id}','destroy')->name('destroy');
     
+        
+    });
+    Route::controller(SubscriberController::class)
+    ->prefix("subscribers")
+    ->name("subscribers.")
+    ->group(function(){
+
+        Route::get('','index')->name('index');
+        Route::get('/search','search')->name('search');
+        Route::post('/store','store')->name('store');
+        Route::delete('/{id}','destroy')->name('destroy');
+    
+        
+    });
  
 });
 

@@ -40,8 +40,22 @@
                 
                 <li>
                     <a href={{route('admin.dashboard')}} class="nav-item nav-link text-dark {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}"><i class="fas  fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href={{route('products.index')}} class="nav-item nav-link text-dark {{ request()->routeIs('products.index') ? 'active' : '' }}"><i class="fa fa-solid fa-list me-2"></i>Products</a>
+        
+                </li>
+                <li>
+                    <a href={{route('products.index')}} class="nav-item nav-link text-dark {{ request()->routeIs('products.index') ? 'active' : '' }}"><i class="fa fa-solid  fa-list me-2"></i>Products</a>
+        
+                </li>
+                <li>
                     <a href={{route('categories.index')}} class="nav-item nav-link text-dark {{ request()->routeIs('categories.index') ? 'active' : '' }}"><i class="fa fa-solid  fa-list-ol me-2"></i>Categories</a>
+        
+                </li>
+                <li>
+                    <a href={{route('contacts.index')}} class="nav-item nav-link text-dark {{ request()->routeIs('contacts.index') ? 'active' : '' }}"><i class="fas fa-solid fa-address-book me-2"></i>Contacts</a>
+        
+                </li>
+                <li>
+                    <a href={{route('subscribers.index')}} class="nav-item nav-link text-dark {{ request()->routeIs('subscribers.index') ? 'active' : '' }}"><i class="fas fa-solid fa-thumbs-up me-2"></i>Subscribers</a>
         
                 </li>
             
