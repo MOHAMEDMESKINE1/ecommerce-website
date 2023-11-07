@@ -17,7 +17,26 @@ class TwilioController extends Controller
     
     $message =  $twilio->messages->create($receiveNumber, // to
                                [
-                                   "body" => "Hello There are a  new payment checkout your stripe account ",
+                                   "body" => "Hello There are a  new payment checkout your stripe account  ",
+                                   "from" => $from
+                               ]
+                      );
+        
+
+    return $message;
+   }
+   public static function newUser($user){
+
+    $receiveNumber = "+212704282927";
+    $sid =  config('services.twilio.sid');
+    $token =  config('services.twilio.token');
+    $from =  config('services.twilio.number');
+   
+    $twilio = new Client($sid, $token);
+    
+    $message =  $twilio->messages->create($receiveNumber, // to
+                               [
+                                   "body" => "Hello Mr {$user}  has just create an account in your ecommerce website    ",
                                    "from" => $from
                                ]
                       );
