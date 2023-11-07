@@ -56,22 +56,7 @@
             
             
         </div>
-        {{-- <div class="row">
-            <div class="col-md-12 gap-2">
-              
-                    <div class="card" >
-                        <div class="card-header">Dashboard</div>
-                            <div class="card-body">
-                
-                              
-                                {!! $products_line->container() !!}
-                
-                            </div>
-                    </div>
-            
-               
-            </div>
-        </div> --}}
+       
     </div>
 
 

@@ -100,7 +100,6 @@
                                 </div>
                                 <h6 class="text-success">Free shipping</h6>
                                 <div class="d-flex flex-column mt-4">
-                                    {{-- <button class="btn btn-secondary btn-sm" type="button">Details</button> --}}
                                     <a href="{{ url('add-to-cart/'.$product->id) }}" class="btn btn-outline-primary btn-sm mt-2" >Add To Cart</a></div>
 
                             </div>

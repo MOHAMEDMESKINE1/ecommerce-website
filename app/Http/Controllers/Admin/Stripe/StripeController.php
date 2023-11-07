@@ -6,6 +6,7 @@ use Stripe\Stripe;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\TwilioController;
 
 class StripeController extends Controller
 {
@@ -41,6 +42,9 @@ class StripeController extends Controller
             'mode'        => 'payment',
             'success_url' => route('success'),
         ]);
+        
+        // TWILIO MESSAGE AFTER PAYMENT 
+        TwilioController::sendMsg();
 
         return redirect()->away($session->url);
     }

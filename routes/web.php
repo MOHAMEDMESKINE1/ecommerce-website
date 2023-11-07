@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Editor\EditorController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\Stripe\StripeController;
+use App\Http\Controllers\TwilioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ use App\Http\Controllers\Admin\Stripe\StripeController;
 
 
 
+Route::get('sendsms',[TwilioController::class,'sendMsg']);
 
 Route::middleware(['auth','admin'])->group(function () {
 
