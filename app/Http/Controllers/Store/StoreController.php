@@ -19,7 +19,7 @@ class StoreController extends Controller
 
     public function home(Product $product){
       
-      $products = Product::with('category')->latest()->paginate(8);
+      $products = Product::with('category')->latest()->simplePaginate(4);
       return view('store.home',compact('products','product'));
     }
     public function contact(){

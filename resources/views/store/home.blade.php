@@ -142,18 +142,8 @@
          <!-- FOOTER-->
        @include('layouts.footerStore')
         <!-- JavaScript files-->
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="vendor/nouislider/nouislider.min.js"></script>
-        <script src="vendor/swiper/swiper-bundle.min.js"></script>
-        <script src="vendor/choices.js/public/assets/scripts/choices.min.js"></script>
-        <script src="js/front.js"></script>
         <script>
-          // ------------------------------------------------------- //
-          //   Inject SVG Sprite - 
-          //   see more here 
-          //   https://css-tricks.com/ajaxing-svg-sprite/
-          // ------------------------------------------------------ //
+        
           function injectSvgSprite(path) {
           
               var ajax = new XMLHttpRequest();

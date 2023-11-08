@@ -28,6 +28,7 @@ use App\Http\Controllers\Admin\Stripe\StripeController;
 
 Route::get('sendsms',[TwilioController::class,'sendMsg']);
 
+
 Route::middleware(['auth','admin'])->group(function () {
 
     Route::controller(AdminController::class)
@@ -44,12 +45,13 @@ Route::middleware(['auth','admin'])->group(function () {
     ->group(function(){
         Route::get('',  'index')->name('index');
         Route::get('/statistics',  'statistics')->name('statistics');
-        Route::post('/search',  'search')->name('search');
+        Route::get('/create',  'create')->name('create');
         Route::get('/edit/{id}',  'edit')->name('edit');
+        Route::post('/search',  'search')->name('search');
         Route::post('',  'store')->name('store');
         Route::put('/{id}',  'update')->name('update');
         Route::delete('/{id}',  'destroy')->name('destroy');
-        Route::get('/create',  'create')->name('create');
+        Route::delete('/delete',  'multiDelete')->name('multiDelete');
     
     });
 

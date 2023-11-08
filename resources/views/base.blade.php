@@ -27,7 +27,9 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;700&amp;display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Martel+Sans:wght@300;400;800&amp;display=swap">
-    
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="plugins/Jquery-Table-Check-All/dist/TableCheckAll.js"></script>
         @vite([
         'resources/sass/app.scss', 
         'resources/css/style.css', 

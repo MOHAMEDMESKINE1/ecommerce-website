@@ -50,4 +50,8 @@ return [
         'token' => env('TWILIO_TOKEN'),
         'number' => env('TWILIO_NUMBER'),
     ],
+    'recaptcha' => [
+        'sitkey' => env('GOOGLE_RECAPTCHA_KEY'),
+        'secretkey' => env('GOOGLE_RECAPTCHA_SECRET'),
+    ],
 ];

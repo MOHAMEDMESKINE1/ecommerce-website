@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>Contact</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     @vite([
         
     'resources/css/style.css', 
@@ -12,11 +14,12 @@
     'resources/js/app.js',
    
     ])
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <!-- recaptcha -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <!-- recaptcha -->
 </head>
 <body>
     @include('layouts.navbar')
@@ -100,12 +103,20 @@
         
                             @enderror
                           </div>
-                          <div class="mb-3">
                           
-                            <input type="submit"  class="btn btn-primary text-white w-100" value="Contact Us" >
-                            
-                          </div>
-                          
+                            <div class="mb-3" >
+                                {{-- <div class="g-recaptcha" data-sitekey="{{ env('GOOGLE_RECAPTCHA_KEY') }}"></div> --}}
+                                {{-- <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div> --}}
+                                <div class="g-recaptcha" data-sitekey="6LfZ6AUpAAAAAOVCq7OGhFP7MX6mRIkAKMpZBnrD"></div>
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="text-danger">{{ $errors->first('g-recaptcha-response') }}</span>
+                                @endif
+                                
+
+                            </div>      
+                            <div class="mb-3">
+                                <input type="submit"  class="btn btn-primary text-white w-100" value="Contact Us" >
+                            </div>                      
                     </form>
     
                 </div>
@@ -118,6 +129,14 @@
         </div>
 
         @include('layouts.footerStore')
-
+        {{-- <script>
+            grecaptcha.ready(function() {
+                grecaptcha.execute('{{ config('services.recaptcha.sitekey') }}', {
+                    action: 'contact'
+                }).then(function(token) {
+                    document.getElementById('g-recaptcha-response').value = token;
+                });
+            });
+        </script> --}}
 </body>
 </html>

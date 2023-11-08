@@ -11,8 +11,8 @@ class Product extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $guarded = [''];
-    public function getCreatedAtAttribute($value)
+    protected $fillable = ['name', 'price', 'description','image','quantity','category_id'];
+        public function getCreatedAtAttribute($value)
     {
         return Carbon::parse($value)->diffForHumans();
     }

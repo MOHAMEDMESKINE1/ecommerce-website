@@ -128,6 +128,7 @@ class ProductController extends Controller
         if($product->image){
             // Delete the product image from the storage disk.
             Storage::disk('public')->delete($product->image);
+            $product->delete();
         }else{
             $product->delete();
 
@@ -137,19 +138,35 @@ class ProductController extends Controller
         return redirect()->route("products.index")->with('success','Product deleted successfully');
 
     }
-    // public function destroy(Request  $request)
-    // {
-    //     $ids = $request->input('ids');
+    public function multiDelete(Request  $request)
+    {
+        
+        // Product::whereIn('id', $request->get('selected'))->delete();
 
-    //     // Ensure ids is an array and not empty
-    //     if (is_array($ids) && count($ids) > 0) {
-    //         Product::whereIn('id', $ids)->delete();
-
-    //         return redirect()->route('products')->with('success', 'Products deleted successfully');
-    //     }
-
-    //     return redirect()->route('products')->with('error', 'No products selected for deletion');
-       
-
-    // }
+        $selectedIds = $request->get('selected');
+        $productsToDelete = [];
+    
+        foreach ($selectedIds as $id) {
+            $product = Product::find($id);
+    
+            if ($product) {
+                $productsToDelete[] = $product;
+            }
+        }
+    
+        if ($productsToDelete) {
+            // Delete the products and their images
+            foreach ($productsToDelete as $product) {
+               
+    
+                if ($product->image) {
+                    Storage::disk('public')->delete($product->image);
+                    $product->delete();
+                }
+                $product->delete();
+            }
+        }
+        
+        return response()->json(['success'=>"Products Deleted successfully."]);
+    }
 }
